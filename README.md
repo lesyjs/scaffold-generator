@@ -1,6 +1,3 @@
-[![Build Status](https://travis-ci.org/kaelzhang/node-scaffold-generator.svg?branch=master)](https://travis-ci.org/kaelzhang/node-scaffold-generator)
-[![Coverage](https://codecov.io/gh/kaelzhang/node-scaffold-generator/branch/master/graph/badge.svg)](https://codecov.io/gh/kaelzhang/node-scaffold-generator)
-
 # scaffold-generator
 
 Scaffold-generator is a scaffolding utility used to automate project creation from the specified template and data.
@@ -14,7 +11,7 @@ You are free to safely copy several sources to their destinations with one singl
 ## Installation
 
 ```bash
-npm install scaffold-generator --save
+npm install scaffold-generator2 --save
 ```
 
 ## Usage
@@ -37,27 +34,20 @@ And /path/from/package.json:
 ```
 
 ```js
-const Scaffold = require('scaffold-generator')
-const mustache = require('mustache')
-
-// All variables are HTML-escaped by mustache by default,
-// and `lib/index.js` will be escaped to `lib&#x2F;index.js`.
-// To avoid this, override the `mustache.escape`
-// or triple mustache `{{{name}}}` should be used.
-mustache.escape = v => v
+const Scaffold = require("scaffold-generator2");
+const handlebars = require("handlebars");
 
 new Scaffold({
   data: {
-    name: 'my-module',
-    main: 'lib/index.js'
+    name: "my-module",
+    main: "lib/index.js",
   },
-  // function `options.render` accepts `str` and `data`, then returns a `str`
-  render: mustache.render
+  render: (str, data) => handlebars.compile(str)(data),
 })
-.copy('/path/from', '/path/to')
-.then(() => {
-  console.log('done')
-})
+  .copy("/path/from", "/path/to")
+  .then(() => {
+    console.log("done");
+  });
 ```
 
 Then:
@@ -92,6 +82,7 @@ File contents will also be substitute. And the file `/path/to/package.json` will
 Creates an instance of scaffold-generator
 
 ### .copy(from, to)
+
 ### .copy(filesMap)
 
 - **from** `path` see ['cases'](#cases) section
@@ -121,4 +112,3 @@ Will try to write to `fromFile` with the substituted content of `toFile`
 ### .copy(fromFile, toDir)
 
 Will try to copy file `fromFile` into directory `toDir`
-

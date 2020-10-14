@@ -1,11 +1,10 @@
 {
-  "name": "scaffold-generator",
-  "version": "3.0.4",
-  "description": "Generates a repo from a specified template and data.",
+  "name": "scaffold-generator2",
+  "version": "1.0.0",
+  "description": "Scaffolds project files and directories",
   "main": "index.js",
   "scripts": {
-    "test": "nyc ava --verbose --timeout=10s",
-    "posttest": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
+    "test": "nyc ava --verbose --timeout=10s"
   },
   "files": [
     "index.js"
@@ -19,7 +18,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:kaelzhang/node-scaffold-generator.git"
+    "url": "git@github.com:lesyjs/scaffold-generator.git"
   },
   "engines": {
     "node": ">=6"
@@ -27,7 +26,7 @@
   "author": "kael",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kaelzhang/node-scaffold-generator/issues"
+    "url": "https://github.com/lesyjs/scaffold-generator/issues"
   },
   "ava": {
     "babel": false
@@ -35,7 +34,7 @@
   "devDependencies": {
     "ava": "^1.4.1",
     "codecov": "^3.3.0",
-    "mustache": "^3.0.1",
+    "handlebars": "^4.7.6",
     "nyc": "^13.3.0",
     "tmp": "^0.1.0"
   },
@@ -43,6 +42,7 @@
     "babel-runtime": "^6.26.0",
     "core-util-is": "^1.0.2",
     "fs-extra": "^7.0.1",
+    "slash": "^3.0.0",
     "glob-gitignore": "^1.0.14"
   }
 }
